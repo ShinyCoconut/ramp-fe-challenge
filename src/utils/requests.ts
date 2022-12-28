@@ -10,7 +10,7 @@ import mockData from "../mock-data.json"
 
 const TRANSACTIONS_PER_PAGE = 5
 
-const data: { employees: Employee[]; transactions: Transaction[] } = {
+var data: { employees: Employee[]; transactions: Transaction[] } = {
   employees: mockData.employees,
   transactions: mockData.transactions,
 }
@@ -21,11 +21,14 @@ export const getTransactionsPaginated = ({
   page,
 }: PaginatedRequestParams): PaginatedResponse<Transaction[]> => {
   if (page === null) {
-    throw new Error("Page cannot be null")
+      return {
+        nextPage: null,
+        data: data.transactions,
+      }
   }
 
-  const start = page * TRANSACTIONS_PER_PAGE
-  const end = start + TRANSACTIONS_PER_PAGE
+  const start = 0
+  const end = start + ( (page + 1) * TRANSACTIONS_PER_PAGE)
 
   if (start > data.transactions.length) {
     throw new Error(`Invalid page ${page}`)

@@ -6,7 +6,7 @@ export const InputCheckbox: InputCheckboxComponent = ({ id, checked = false, dis
   const { current: inputId } = useRef(`RampInputCheckbox-${id}`)
 
   return (
-    <div className="RampInputCheckbox--container" data-testid={inputId}>
+    <div className="RampInputCheckbox--container" data-testid={inputId} onClick={() => onChange(!checked)}>
       <label
         className={classNames("RampInputCheckbox--label", {
           "RampInputCheckbox--label-checked": checked,
@@ -17,9 +17,9 @@ export const InputCheckbox: InputCheckboxComponent = ({ id, checked = false, dis
         id={inputId}
         type="checkbox"
         className="RampInputCheckbox--input"
-        checked={checked}
+        defaultChecked={checked}
         disabled={disabled}
-        onChange={() => onChange(!checked)}
+        // onChange={() => onChange(!checked)}
       />
     </div>
   )
