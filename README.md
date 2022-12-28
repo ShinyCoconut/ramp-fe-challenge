@@ -1,1 +1,0 @@
-# ramp-fe-challenge
